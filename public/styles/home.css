@@ -1,0 +1,33 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    width: 100vw;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+    margin-inline: 0%;
+    width: clamp(500px, 70%, 100%); 
+    margin: 0 auto;
+}
+
+/* @media (min-width: 600px) {
+    .row {
+        width: 70%;
+        margin-inline: 15%;
+    }
+} */
+
+
+.BULLISH, .BULLISH_REVERSAL {
+    font-weight: 700;
+    color: rgb(160, 221, 160);
+}
+
+.BEARISH, .BEARISH_REVERSAL {
+    font-weight: 700;
+    color: rgb(221, 160, 160);
+}
