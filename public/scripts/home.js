@@ -10,6 +10,7 @@ const docEls = {
 }
 
 let chartSelections = {
+    "chartType": "candlestick",
     "timeInterval": "1min",
     "symbol": "AAPL"
 }
@@ -19,12 +20,40 @@ let processedData = {}
 function onLoad() {
     callAPI()
 
+    addOnclickEvents()
+    chartManager.displayChart("candlestick")
+}
+
+function addOnclickEvents() {
+    // Chart type Buttons
+    let chartTypesBtns = document.getElementsByClassName("chart-type")
+
+    for (let btn of chartTypesBtns) {
+        btn.addEventListener("click", e => {
+            chartSelections.chartType = e.target.value
+            chartManager.displayChart(e.target.value)
+
+            for (let resetBtn of chartTypesBtns) {
+                resetBtn.classList.remove("active")
+            }
+
+            e.target.classList.add("active")
+        })
+    }
+
+    // Time Interval Buttons
     let timeIntervalBtns = document.getElementsByClassName("time-interval")
 
     for (let btn of timeIntervalBtns) {
         btn.addEventListener("click", e => {
             chartSelections.timeInterval = e.target.value
             callAPI()
+
+            for (let resetBtn of timeIntervalBtns) {
+                resetBtn.classList.remove("active")
+            }
+
+            e.target.classList.add("active")
         })
     }
 }
@@ -86,18 +115,11 @@ function processData(data) {
 
     processedData = candles
 
-    updateGraph(candles, close, low, high)
+    chartManager.updateStockCharts(candles, close, low, high)
     evaluateData(processedData)
 }
 
-function updateGraph(candles, close, low, high) {
-    // Update graph
-    chartManager.lineChart.data.datasets[0].data = candles;
-    chartManager.lineChart.data.datasets[1].data = close;
-    chartManager.lineChart.data.datasets[2].data = low;
-    chartManager.lineChart.data.datasets[3].data = high;
-    chartManager.lineChart.update();
-}
+
 
 function evaluateData(data) {
     console.log(data)

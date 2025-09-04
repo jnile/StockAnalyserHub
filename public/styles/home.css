@@ -14,13 +14,22 @@ body {
     margin: 0 auto;
 }
 
-/* @media (min-width: 600px) {
-    .row {
-        width: 70%;
-        margin-inline: 15%;
-    }
-} */
+#chart-menu {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
 
+.menu-btns-wrapper {
+    margin-bottom: 5px;
+}
+
+.charts-wrapper {
+    flex-direction: column;
+}
+
+.active {
+    background-color: rgb(0, 57, 0) !important;
+}
 
 .BULLISH, .BULLISH_REVERSAL {
     font-weight: 700;

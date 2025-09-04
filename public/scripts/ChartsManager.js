@@ -1,42 +1,43 @@
 export class ChartsManager{
-    lineChart = ""
-
-    constructor() {
-        this.createChart()
+    charts = {
+        "candlestick" : "",
+        "line" : "",
     }
 
-    createChart() {
-        const ctx = document.getElementById("stockChart").getContext("2d");
+    chartsContainerEls = {
+        "candlestick" : document.getElementById("stockChartContainer"),
+        "line" : document.getElementById("stockLineChartContainer"),
+    }
+
+    constructor() {
+        this.createCandlestickChart()
+        this.createLineChart()
+    }
+
+    createLineChart() {
+        const ctx = document.getElementById("stockLineChart").getContext("2d");
 
         // Chart.js setup
-        this.lineChart = new Chart(ctx, {
-            type: "candlestick",
+        this.charts.line = new Chart(ctx, {
+            type: "line",
             data: {
-                labels: [],
                 datasets: [{
-                    label: `AAPL Candles`,
-                    data: [], // will be filled with OHLC data
-                    barThickness: 6,   // controls candle width
-                    maxBarThickness: 8 // prevents candles from being fat
-                } , {
-                    type: "line",
-                    label: 'AAPL Line',
+                    label: 'Close',
                     borderWidth: 1,
                     pointRadius: 0,
-                    data: []
+                    borderColor: "#fff238f1",
+                    data: [],
                 }, {
-                    type: "line",
                     label: 'Low',
                     borderWidth: 1,
                     pointRadius: 0,
-                    color: "#ee3c3ca9",
+                    borderColor: "#ee3c3ca9",
                     data: []
                 }, {
-                    type: "line",
                     label: 'High',
                     borderWidth: 1,
                     pointRadius: 0,
-                    color: "#65ee3ca9",
+                    borderColor: "#65ee3ca9",
                     data: []
                 }]
             },
@@ -65,10 +66,81 @@ export class ChartsManager{
                         },
                         grid: {
                             color: "#222222ff"
-                        }
+                        },
+                        beginAtZero: false,
                     }
                 }
             }
         });
+    }
+
+    createCandlestickChart() {
+        const ctx = document.getElementById("stockChart").getContext("2d");
+
+        // Chart.js setup
+        this.charts.candlestick = new Chart(ctx, {
+            type: "candlestick",
+            data: {
+                datasets: [{
+                    label: 'AAPL Candles',
+                    data: [], // will be filled with OHLC data
+                    barThickness: 6,   // controls candle width
+                    maxBarThickness: 8 // prevents candles from being fat
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        type: "time",   // important: use time scale
+                        time: {
+                            unit: "minute",          // show per minute
+                        },
+                        ticks: {
+                            autoSkip: true,
+                            maxTicksLimit: 10,       // avoid overcrowding
+                            source: "auto"
+                        },
+                        grid: {
+                            display: false,
+                        },
+                    },
+                    y: { 
+                        title: { 
+                            display: true, 
+                            text: "Price (USD)"
+                        },
+                        grid: {
+                            color: "#222222ff"
+                        },
+                        beginAtZero: false,
+                    }
+                }
+            }
+        });
+    }
+
+    updateStockCharts(candlestick_data,
+        close_Data,
+        low_data,
+        high_data
+    ) {
+        this.charts.candlestick.data.datasets[0].data = candlestick_data;
+        
+        this.charts.line.data.datasets[0].data = close_Data;
+        this.charts.line.data.datasets[1].data = low_data;
+        this.charts.line.data.datasets[2].data = high_data;
+
+        this.charts.candlestick.update();
+        this.charts.line.update();
+    }
+
+    displayChart(chartType) {
+        for (const [key, value] of Object.entries(this.chartsContainerEls)) {
+            value.style.display = "none";
+        }
+
+        this.chartsContainerEls[chartType].style.display = "block";
     }
 }

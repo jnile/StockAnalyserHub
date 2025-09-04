@@ -142,7 +142,6 @@ class FinancialController extends chart_js.BarController {
     const high = vscale.getPixelForValue(data.h);
     const low = vscale.getPixelForValue(data.l);
     const close = vscale.getPixelForValue(data.c);
-    const volume = vscale.getPixelForValue(data.v);
 
     return {
       base: reset ? base : low,
@@ -152,8 +151,7 @@ class FinancialController extends chart_js.BarController {
       open,
       high,
       low,
-      close,
-      volume
+      close
     };
   }
 
@@ -213,16 +211,8 @@ class FinancialElement extends chart_js.BarElement {
 
   static defaults = {
     backgroundColors: {
-      up: {
-        small: 'rgba(75, 192, 192, 0.25)',
-        medium: 'rgba(75, 192, 192, 0.5)',
-        big: 'rgba(75, 102, 192, 0.75)',
-      },
-      down: {
-        small: 'rgba(255, 99, 132, 0.25)',
-        medium: 'rgba(255, 99, 132, 0.5)',
-        big: 'rgba(255, 59, 59, 0.75)',
-      },
+      up: 'rgba(75, 192, 192, 0.5)',
+      down: 'rgba(255, 99, 132, 0.5)',
       unchanged: 'rgba(201, 203, 207, 0.5)',
     },
     borderColors: {
@@ -280,7 +270,7 @@ class CandlestickElement extends FinancialElement {
   draw(ctx) {
     const me = this;
 
-    const {x, open, high, low, close, volume} = me;
+    const {x, open, high, low, close} = me;
 
     let borderColors = me.options.borderColors;
     if (typeof borderColors === 'string') {
@@ -294,28 +284,10 @@ class CandlestickElement extends FinancialElement {
     let borderColor;
     if (close < open) {
       borderColor = helpers.valueOrDefault(borderColors ? borderColors.up : undefined, chart_js.defaults.elements.candlestick.borderColors.up);
-      
-      // if (volume < 100) {
-      //   ctx.fillStyle = helpers.valueOrDefault(me.options.backgroundColors ? me.options.backgroundColors.up.small : undefined, chart_js.defaults.elements.candlestick.backgroundColors.up.small);  
-      // } else if (volume < 1000) {
-      //   ctx.fillStyle = helpers.valueOrDefault(me.options.backgroundColors ? me.options.backgroundColors.up.medium : undefined, chart_js.defaults.elements.candlestick.backgroundColors.up.medium);
-      // } else {
-      //   ctx.fillStyle = helpers.valueOrDefault(me.options.backgroundColors ? me.options.backgroundColors.up.big : undefined, chart_js.defaults.elements.candlestick.backgroundColors.up.big);
-      // }
-      ctx.fillStyle = helpers.valueOrDefault(me.options.backgroundColors ? me.options.backgroundColors.up.medium : undefined, chart_js.defaults.elements.candlestick.backgroundColors.up.medium);
+      ctx.fillStyle = helpers.valueOrDefault(me.options.backgroundColors ? me.options.backgroundColors.up : undefined, chart_js.defaults.elements.candlestick.backgroundColors.up);
     } else if (close > open) {
       borderColor = helpers.valueOrDefault(borderColors ? borderColors.down : undefined, chart_js.defaults.elements.candlestick.borderColors.down);
-      
-      // if (volume < 100) {
-      //   ctx.fillStyle = helpers.valueOrDefault(me.options.backgroundColors ? me.options.backgroundColors.down.small : undefined, chart_js.defaults.elements.candlestick.backgroundColors.down.small);  
-      // } else if (volume < 1000) {
-      //   ctx.fillStyle = helpers.valueOrDefault(me.options.backgroundColors ? me.options.backgroundColors.down.medium : undefined, chart_js.defaults.elements.candlestick.backgroundColors.down.medium);
-      // } else {
-      //   ctx.fillStyle = helpers.valueOrDefault(me.options.backgroundColors ? me.options.backgroundColors.down.big : undefined, chart_js.defaults.elements.candlestick.backgroundColors.down.big);
-      // }
-
-      ctx.fillStyle = helpers.valueOrDefault(me.options.backgroundColors ? me.options.backgroundColors.down.medium : undefined, chart_js.defaults.elements.candlestick.backgroundColors.down.medium);
-
+      ctx.fillStyle = helpers.valueOrDefault(me.options.backgroundColors ? me.options.backgroundColors.down : undefined, chart_js.defaults.elements.candlestick.backgroundColors.down);
     } else {
       borderColor = helpers.valueOrDefault(borderColors ? borderColors.unchanged : undefined, chart_js.defaults.elements.candlestick.borderColors.unchanged);
       ctx.fillStyle = helpers.valueOrDefault(me.backgroundColors ? me.backgroundColors.unchanged : undefined, chart_js.defaults.elements.candlestick.backgroundColors.unchanged);
