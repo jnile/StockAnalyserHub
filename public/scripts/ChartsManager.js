@@ -25,19 +25,19 @@ export class ChartsManager{
                     label: 'Close',
                     borderWidth: 1,
                     pointRadius: 0,
-                    borderColor: "#fff238f1",
+                    borderColor: "#fff2388e",
                     data: [],
                 }, {
                     label: 'Low',
                     borderWidth: 1,
                     pointRadius: 0,
-                    borderColor: "#ee3c3ca9",
+                    borderColor: "#ff2c2cd0",
                     data: []
                 }, {
                     label: 'High',
                     borderWidth: 1,
                     pointRadius: 0,
-                    borderColor: "#65ee3ca9",
+                    borderColor: "#55ff22d0",
                     data: []
                 }]
             },

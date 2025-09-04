@@ -123,7 +123,6 @@ function processData(data) {
 
 
 function evaluateData(data) {
-    console.log(data)
     for (let i = 0; i < data.length - 2; i++) {
         const res = stockAnalyser.analyseData([
             data[i],
