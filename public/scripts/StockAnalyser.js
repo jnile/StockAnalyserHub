@@ -7,8 +7,8 @@ export class StockAnalyser {
         let oneC = this.oneCandle(candleDataset[2])
         let twoC = this.twoCandle(candleDataset[1], candleDataset[2])
         let threeC = {
-            type: null,
-            signal: null,
+            type: PATTERNS.NONE,
+            signal: SIGNAL.NONE,
         }
         
         return {
@@ -67,8 +67,8 @@ export class StockAnalyser {
         }
 
         return {
-            type: null,
-            signal: null,
+            type: PATTERNS.NONE,
+            signal: SIGNAL.NONE,
             color: color
         }
     }
@@ -103,8 +103,8 @@ export class StockAnalyser {
         }
 
         return {
-            type: null,
-            signal: null,
+            type: PATTERNS.NONE,
+            signal: SIGNAL.NONE,
         }
     }
 }

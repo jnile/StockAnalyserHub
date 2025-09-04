@@ -84,6 +84,7 @@ function processData(data) {
 
     for (let timestamp in timeSeries) {
         const ohlc = timeSeries[timestamp];
+        
         candles.push({
             x: new Date(timestamp),
             o: parseFloat(ohlc["1. open"]),
@@ -147,14 +148,14 @@ function updateTableData(res, data) {
     appendDataToTable(tr, date.toUTCString())
 
     // Candle Types
-    appendDataToTable(tr, NO_TO_PATTERNS[res.oneC.type ? res.oneC.type : 0])
-    appendDataToTable(tr, NO_TO_PATTERNS[res.twoC.type ? res.twoC.type : 0])
-    appendDataToTable(tr, NO_TO_PATTERNS[res.threeC.type ? res.threeC.type : 0])
+    appendDataToTable(tr, NO_TO_PATTERNS[res.oneC.type])
+    appendDataToTable(tr, NO_TO_PATTERNS[res.twoC.type])
+    appendDataToTable(tr, NO_TO_PATTERNS[res.threeC.type])
 
     // Candle Signal
-    appendDataToTable(tr, NO_TO_SIGNAL[res.oneC.signal ? res.oneC.signal : 0], NO_TO_SIGNAL[res.oneC.signal ? res.oneC.signal : 0])
-    appendDataToTable(tr, NO_TO_SIGNAL[res.twoC.signal ? res.twoC.signal : 0], NO_TO_SIGNAL[res.twoC.signal ? res.twoC.signal : 0])
-    appendDataToTable(tr, NO_TO_SIGNAL[res.threeC.signal ? res.threeC.signal : 0], NO_TO_SIGNAL[res.threeC.signal ? res.threeC.signal : 0])
+    appendDataToTable(tr, NO_TO_SIGNAL[res.oneC.signal], NO_TO_SIGNAL[res.oneC.signal])
+    appendDataToTable(tr, NO_TO_SIGNAL[res.twoC.signal], NO_TO_SIGNAL[res.twoC.signal])
+    appendDataToTable(tr, NO_TO_SIGNAL[res.threeC.signal], NO_TO_SIGNAL[res.threeC.signal])
 
     // Candle Volume
     appendDataToTable(tr, data[2].v)

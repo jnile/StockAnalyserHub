@@ -7,6 +7,7 @@ export const TREND = Object.freeze({
 })
 
 export const PATTERNS = Object.freeze({
+    NONE : 0,
     HAMMER : 1, //
     INVERTED_HAMMER : 2,
     DOJI : 3,
@@ -15,6 +16,7 @@ export const PATTERNS = Object.freeze({
 });
 
 export const SIGNAL = Object.freeze({
+    NONE : 0,
     BULLISH : 1,
     BEARISH : 2,
     INDECISION : 3,
