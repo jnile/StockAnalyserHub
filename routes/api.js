@@ -9,7 +9,7 @@ const router = express.Router();
 const apiKey = process.env.ALPHAVENTURE_API_KEY
 
 const financeAPIURL = "https://www.alphavantage.co/"
-const devMode = true;
+const devMode = process.env.DEV_MODE || true
 
 
 router.route("/").get((req, res, next) => {
