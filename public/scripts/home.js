@@ -74,6 +74,7 @@ async function callAPI(){
         })
 }
 
+// Process and display data
 function processData(data) {
     const timeSeries = data[`Time Series (${chartSelections.timeInterval})`];
     
@@ -120,8 +121,7 @@ function processData(data) {
     evaluateData(processedData)
 }
 
-
-
+// Take processed data and use it
 function evaluateData(data) {
     for (let i = 0; i < data.length - 2; i++) {
         const res = stockAnalyser.analyseData([
@@ -139,35 +139,36 @@ function evaluateData(data) {
     }
 }
 
+// Add Table Row
 function updateTableData(res, data) {
     let tr = document.createElement("tr")
 
     // Time
     let date = new Date(data[2].x)
-    appendDataToTable(tr, date.toUTCString())
+    appendDataToTableRow(tr, date.toUTCString())
 
     // Candle Types
-    appendDataToTable(tr, NO_TO_PATTERNS[res.oneC.type])
-    appendDataToTable(tr, NO_TO_PATTERNS[res.twoC.type])
-    appendDataToTable(tr, NO_TO_PATTERNS[res.threeC.type])
+    appendDataToTableRow(tr, NO_TO_PATTERNS[res.oneC.type])
+    appendDataToTableRow(tr, NO_TO_PATTERNS[res.twoC.type])
+    appendDataToTableRow(tr, NO_TO_PATTERNS[res.threeC.type])
 
     // Candle Signal
-    appendDataToTable(tr, NO_TO_SIGNAL[res.oneC.signal], NO_TO_SIGNAL[res.oneC.signal])
-    appendDataToTable(tr, NO_TO_SIGNAL[res.twoC.signal], NO_TO_SIGNAL[res.twoC.signal])
-    appendDataToTable(tr, NO_TO_SIGNAL[res.threeC.signal], NO_TO_SIGNAL[res.threeC.signal])
+    appendDataToTableRow(tr, NO_TO_SIGNAL[res.oneC.signal], NO_TO_SIGNAL[res.oneC.signal])
+    appendDataToTableRow(tr, NO_TO_SIGNAL[res.twoC.signal], NO_TO_SIGNAL[res.twoC.signal])
+    appendDataToTableRow(tr, NO_TO_SIGNAL[res.threeC.signal], NO_TO_SIGNAL[res.threeC.signal])
 
     // Candle Volume
-    appendDataToTable(tr, data[2].v)
-    appendDataToTable(tr, data[1].v)
-    appendDataToTable(tr, data[0].v)
+    appendDataToTableRow(tr, data[2].v)
+    appendDataToTableRow(tr, data[1].v)
+    appendDataToTableRow(tr, data[0].v)
 
     // Best Decision
-    appendDataToTable(tr, "TBD")
+    appendDataToTableRow(tr, "TBD")
 
     docEls.stockAnalysisTableBody.appendChild(tr)
 }
 
-function appendDataToTable(tr, data, ...args) {
+function appendDataToTableRow(tr, data, ...args) {
     let td = document.createElement("td")
     td.innerText = data
     args.forEach(x => {
