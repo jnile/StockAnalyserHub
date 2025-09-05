@@ -14,18 +14,13 @@ body {
     margin: 0 auto;
 }
 
-
-#chart-menu {
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
-.menu-btns-wrapper {
-    margin-bottom: 5px;
-}
-
-.charts-wrapper {
+.flex-column {
     flex-direction: column;
+}
+
+.table_img {
+    background-color: grey;
+    height: 100px;
 }
 
 .active {

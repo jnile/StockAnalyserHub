@@ -1,6 +1,7 @@
 import { ChartsManager } from './ChartsManager.js'
 import { StockAnalyser } from './StockAnalyser.js'
 import { NO_TO_PATTERNS, NO_TO_SIGNAL } from './Enums.js'
+import { appendDataToTableRow } from './Utiity.js'
 
 const chartManager = new ChartsManager()
 const stockAnalyser = new StockAnalyser()
@@ -168,16 +169,5 @@ function updateTableData(res, data) {
     docEls.stockAnalysisTableBody.appendChild(tr)
 }
 
-function appendDataToTableRow(tr, data, ...args) {
-    let td = document.createElement("td")
-    td.innerText = data
-    args.forEach(x => {
-        if (x != "") {
-            td.classList.add(x)
-        }
-    })
-
-    tr.appendChild(td)
-}
 
 onLoad()
