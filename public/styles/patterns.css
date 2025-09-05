@@ -18,6 +18,33 @@ body {
     flex-direction: column;
 }
 
+.navbar {
+    justify-content: flex-start;
+}
+
+.navbar .items {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.navbar h1 {
+    font-size: 2.5rem;
+}
+
+.navbar .items a {
+    width: min-content;
+    padding-inline: 30px;
+    font-weight: 400;
+    color: var(--accents-5);
+}
+
+.navbar .items .selected {
+    background-color: transparent;
+    font-weight: 500;
+    color: white;
+}
+
 .table_img {
     background-color: grey;
     height: 100px;
