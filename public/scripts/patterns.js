@@ -4,81 +4,83 @@ const docEls = {
     oneCandleStickTableBody : document.getElementById("oneCandlePatternsTableBody"),
 }
 
+const imageUrl = "/images/candlestick_patterns"
+
 const candlestickPatterns = {
     one_stick : [
             {
                 name: "Bullish Marubozu",
-                img: "/images/candlestick_patterns/Green_marubozu.png",
+                img: imageUrl + "/Green_marubozu.png",
                 trend: "Green",
                 signal: "Bullish",
                 notes: ""
             },
             {
                 name: "Dragonfly Doji",
-                img: "/images/candlestick_patterns/Green_doji.png",
+                img: imageUrl + "/Green_doji.png",
                 trend: "Green",
                 signal: "Bullish",
                 notes: ""
             },
             {
                 name: "Hammer",
-                img: "/images/candlestick_patterns/Green_hammer.png",
+                img: imageUrl + "/Green_hammer.png",
                 trend: "Green",
                 signal: "Bullish",
                 notes: ""
             },
             {
                 name: "Bullish Spinning Top",
-                img: "/images/candlestick_patterns/Green_spinning_top.png",
+                img: imageUrl + "/Green_spinning_top.png",
                 trend: "Green",
                 signal: "Bullish",
                 notes: ""
             },
             {
                 name: "Inverted Hammer",
-                img: "/images/candlestick_patterns/Green_inverted_hammer.png",
+                img: imageUrl + "/Green_inverted_hammer.png",
                 trend: "Green",
                 signal: "Bullish",
                 notes: ""
             },
             {
                 name: "Doji",
-                img: "/images/candlestick_patterns/Doji.png",
+                img: imageUrl + "/Doji.png",
                 trend: "Grey",
                 signal: "Indecision",
                 notes: ""
             },
             {
                 name: "Hanging Man",
-                img: "/images/candlestick_patterns/Red_handing_man.png",
+                img: imageUrl + "/Red_handing_man.png",
                 trend: "Red",
                 signal: "Bearish",
                 notes: ""
             },
             {
                 name: "Bearish Spinning Top",
-                img: "/images/candlestick_patterns/Red_spinning_top.png",
+                img: imageUrl + "/Red_spinning_top.png",
                 trend: "Red",
                 signal: "Bearish",
                 notes: ""
             },
             {
                 name: "Inverted Hammer",
-                img: "/images/candlestick_patterns/Red_inverted_hammer.png",
+                img: imageUrl + "/Red_inverted_hammer.png",
                 trend: "Red",
                 signal: "Bearish",
                 notes: ""
             },
             {
                 name: "Gavestone Doji",
-                img: "/images/candlestick_patterns/Red_doji.png",
+                img: imageUrl + "/Red_doji.png",
                 trend: "Red",
                 signal: "Bearish",
                 notes: ""
             },
             {
                 name: "Bearish Marubozu",
-                img: "/images/candlestick_patterns/Red_marubozu.png",
+                img: imageUrl + "/Red_marubozu.png",
                 trend: "Red",
                 signal: "Bearish",
                 notes: ""
