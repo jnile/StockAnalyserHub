@@ -146,7 +146,7 @@ function updateTableData(res, data) {
 
     // Time
     let date = new Date(data[2].x)
-    appendDataToTableRow(tr, date.toUTCString())
+    appendDataToTableRow(tr, date.toString())
 
     // Candle Types
     appendDataToTableRow(tr, NO_TO_PATTERNS[res.oneC.type])
