@@ -1,7 +1,7 @@
 import { ChartsManager } from './ChartsManager.js'
 import { StockAnalyser } from './StockAnalyser.js'
 import { NO_TO_PATTERNS, NO_TO_SIGNAL, NO_TO_TREND } from './Enums.js'
-import { appendDataToTableRow } from './Utiity.js'
+import { appendDataToTableRow } from './Utility.js'
 
 const chartManager = new ChartsManager()
 const stockAnalyser = new StockAnalyser()

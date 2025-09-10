@@ -1,4 +1,4 @@
-import { appendDataToTableRow } from "./Utiity.js"
+import { appendDataToTableRow } from "./Utility.js"
 
 const docEls = {
     oneCandleStickTableBody : document.getElementById("oneCandlePatternsTableBody"),
