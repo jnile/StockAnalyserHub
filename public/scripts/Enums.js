@@ -8,11 +8,21 @@ export const TREND = Object.freeze({
 
 export const PATTERNS = Object.freeze({
     NONE : 0,
-    HAMMER : 1, //
-    INVERTED_HAMMER : 2,
-    DOJI : 3,
-    BULLISH_ENGULFING: 4,
-    BEARISH_ENGULFING: 5,
+    
+    // One Candlestick
+    BULLISH_MARUBOZU : 1, //
+    DRAGONFLY_DOJI : 2,
+    HAMMER : 3,
+    BULLISH_SPINNING_TOP: 4,
+    INVERTED_HAMMER: 5,
+    DOJI: 6,
+    HANGING_MAN: 7,
+    BEARISH_SPINNING_TOP: 8,
+    BEARISH_INVERTED_HAMMER: 9,
+    GRAVESTONE_DOJI: 10,
+    BEARISH_MARUBOZU: 11,
+
+    // Two Candlestick
 });
 
 export const SIGNAL = Object.freeze({
@@ -26,11 +36,21 @@ export const SIGNAL = Object.freeze({
 
 export const NO_TO_PATTERNS = Object.freeze({
     0 : "",
-    1 : "HAMMER", //
-    2 : "INVERTED_HAMMER",
-    3 : "DOJI",
-    4 : "BULLISH_ENGULFING",
-    5 : "BEARISH_ENGULFING",
+    
+    // One Candlestick
+    1 : "BULLISH MARUBOZU",
+    2 : "DRAGONFLY DOJI",
+    3 : "HAMMER",
+    4 : "BULLISH SPINNING TOP",
+    5 : "INVERTED HAMMER",
+    6 : "DOJI",
+    7 : "HANGING MAN",
+    8 : "BEARISH SPINNING TOP",
+    9 : "BEARISH INVERTED HAMMER",
+    10 : "GRAVESTONE DOJI",
+    11 : "BEARISH MARUBOZU",
+
+    // Two Candlestick
 });
 
 export const NO_TO_SIGNAL = Object.freeze({
@@ -40,4 +60,10 @@ export const NO_TO_SIGNAL = Object.freeze({
     3 : "INDECISION",
     4 : "BULLISH_REVERSAL", // Up
     5 : "BEARISH_REVERSAL", // Down
+})
+
+export const NO_TO_TREND = Object.freeze({
+    1: "GREEN_TREND",
+    2: "RED_TREND",
+    3: "GREY_TREND",
 })

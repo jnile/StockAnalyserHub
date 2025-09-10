@@ -1,6 +1,6 @@
 import { ChartsManager } from './ChartsManager.js'
 import { StockAnalyser } from './StockAnalyser.js'
-import { NO_TO_PATTERNS, NO_TO_SIGNAL } from './Enums.js'
+import { NO_TO_PATTERNS, NO_TO_SIGNAL, NO_TO_TREND } from './Enums.js'
 import { appendDataToTableRow } from './Utiity.js'
 
 const chartManager = new ChartsManager()
@@ -122,7 +122,10 @@ function processData(data) {
     evaluateData(processedData)
 }
 
-// Take processed data and use it
+/**
+ * Evaluates data for processing
+ * @param {[]} data 
+ */
 function evaluateData(data) {
     for (let i = 0; i < data.length - 2; i++) {
         const res = stockAnalyser.analyseData([
@@ -149,14 +152,14 @@ function updateTableData(res, data) {
     appendDataToTableRow(tr, date.toString())
 
     // Candle Types
-    appendDataToTableRow(tr, NO_TO_PATTERNS[res.oneC.type])
-    appendDataToTableRow(tr, NO_TO_PATTERNS[res.twoC.type])
-    appendDataToTableRow(tr, NO_TO_PATTERNS[res.threeC.type])
+    appendDataToTableRow(tr, NO_TO_PATTERNS[res.firstC.type], NO_TO_TREND[res.firstC.color])
+    appendDataToTableRow(tr, NO_TO_PATTERNS[res.secondC.type], NO_TO_TREND[res.secondC.color])
+    appendDataToTableRow(tr, NO_TO_PATTERNS[res.thirdC.type], NO_TO_TREND[res.thirdC.color])
 
     // Candle Signal
-    appendDataToTableRow(tr, NO_TO_SIGNAL[res.oneC.signal], NO_TO_SIGNAL[res.oneC.signal])
-    appendDataToTableRow(tr, NO_TO_SIGNAL[res.twoC.signal], NO_TO_SIGNAL[res.twoC.signal])
-    appendDataToTableRow(tr, NO_TO_SIGNAL[res.threeC.signal], NO_TO_SIGNAL[res.threeC.signal])
+    appendDataToTableRow(tr, NO_TO_SIGNAL[0], NO_TO_SIGNAL[0])
+    appendDataToTableRow(tr, NO_TO_SIGNAL[0], NO_TO_SIGNAL[0])
+    appendDataToTableRow(tr, NO_TO_SIGNAL[0], NO_TO_SIGNAL[0])
 
     // Candle Volume
     appendDataToTableRow(tr, data[2].v)

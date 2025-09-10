@@ -65,14 +65,14 @@ const candlestickPatterns = {
                 notes: ""
             },
             {
-                name: "Inverted Hammer",
+                name: "Bearish Inverted Hammer",
                 img: imageUrl + "/Red_inverted_hammer.png",
                 trend: "Red",
                 signal: "Bearish",
                 notes: ""
             },
             {
-                name: "Gavestone Doji",
+                name: "Gravestone Doji",
                 img: imageUrl + "/Red_doji.png",
                 trend: "Red",
                 signal: "Bearish",
