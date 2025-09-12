@@ -133,23 +133,17 @@ function processData(data) {
 }
 
 /**
- * Evaluates data for processing
+ * Evaluates data for analysing and patterns
  * @param {Candlestick[]} data 
  */
 function evaluateData(data) {
     for (let i = 0; i < data.length - 2; i++) {
-        const res = stockAnalyser.analyseData([
-            data[i],
-            data[i+1],
-            data[i+2]
-        ])
+        let chrono_data = [data[i], data[i+1], data[i+2]]
+
+        const res = stockAnalyser.analyseData(chrono_data)
 
         // Update table
-        updateTableData(res, [
-            data[i],
-            data[i + 1],
-            data[i + 2],
-        ])
+        updateTableData(res, chrono_data)
     }
 }
 
