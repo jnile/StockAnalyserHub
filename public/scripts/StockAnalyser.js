@@ -1,6 +1,6 @@
 import { PATTERNS, TREND, SIGNAL } from './Enums.js'
 import { Candlestick } from './Candlestick.js'
-import { matchSingleCandlestickPattern } from './SingleCandlestickPatternMatcher.js'
+import { matchDoubleCandlestickPattern } from './doubleCandlestickPatternMatcher.js'
 
 export class StockAnalyser {
 

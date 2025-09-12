@@ -8,5 +8,9 @@ import { Candlestick } from "./Candlestick.js";
  * @returns {{type: PATTERNS, trend: TREND}}
  */
 export function matchDoubleCandlestickPattern(c1, c2) {
-    
+    // If no patterns match
+    return {
+        type: PATTERNS.NONE,
+        trend: TREND.GREY
+    }
 }

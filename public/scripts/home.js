@@ -153,15 +153,19 @@ function evaluateData(data) {
     }
 }
 
-// Add Table Row
+/**
+ * 
+ * @param {*} res 
+ * @param {Candlestick[]} data 
+ */
 function updateTableData(res, data) {
     let tr = document.createElement("tr")
 
     // Time
-    let date = new Date(data[2].x)
+    let date = new Date(data[2].time)
     appendDataToTableRow(tr, date.toString())
 
-    // Candle Types
+    // Candle Types/Patterns
     appendDataToTableRow(tr, NO_TO_PATTERNS[res.firstC.type], NO_TO_TREND[res.firstC.color])
     appendDataToTableRow(tr, NO_TO_PATTERNS[res.secondC.type], NO_TO_TREND[res.secondC.color])
     appendDataToTableRow(tr, NO_TO_PATTERNS[res.thirdC.type], NO_TO_TREND[res.thirdC.color])
@@ -172,9 +176,9 @@ function updateTableData(res, data) {
     appendDataToTableRow(tr, NO_TO_SIGNAL[0], NO_TO_SIGNAL[0])
 
     // Candle Volume
-    appendDataToTableRow(tr, data[2].v)
-    appendDataToTableRow(tr, data[1].v)
-    appendDataToTableRow(tr, data[0].v)
+    appendDataToTableRow(tr, data[2].volume)
+    appendDataToTableRow(tr, data[1].volume)
+    appendDataToTableRow(tr, data[0].volume)
 
     // Best Decision
     appendDataToTableRow(tr, "TBD")

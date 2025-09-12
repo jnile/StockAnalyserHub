@@ -1,5 +1,5 @@
 import { PATTERNS, TREND } from "./Enums.js";
-import { matchSingleCandlestickPattern } from "./SingleCandlestickPatternMatcher";
+import { matchSingleCandlestickPattern } from "./SingleCandlestickPatternMatcher.js";
 
 export class Candlestick {
     /**
@@ -9,12 +9,13 @@ export class Candlestick {
      * @param {number} low 
      * @param {number} close 
      */
-    constructor(time, open, high, low, close) {
+    constructor(time, open, high, low, close, volume) {
         this.time = time
         this.open = open
         this.high = high
         this.low = low
         this.close = close
+        this.volume = volume
     }
 
     /**
@@ -32,7 +33,7 @@ export class Candlestick {
      * @returns { {type: PATTERNS, trend: TREND} }
      */
     getTypeAndTrend() {
-        if (this.type != nil) {
+        if (this.type === undefined) {
             let res = matchSingleCandlestickPattern(this)
             this._setTypeAndTrend(res.type, res.color)
         }
