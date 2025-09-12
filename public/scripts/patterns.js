@@ -1,102 +1,120 @@
 import { appendDataToTableRow } from "./Utility.js"
 
 const docEls = {
-    oneCandleStickTableBody : document.getElementById("oneCandlePatternsTableBody"),
+    singleCandleStickTableBody : document.getElementById("singleCandlePatternsTableBody"),
+    doubleCandleStickTableBody : document.getElementById("doubleCandlePatternsTableBody"),
 }
 
 const imageUrl = "/images/candlestick_patterns"
 
 const candlestickPatterns = {
-    one_stick : [
+    single_stick : [
             {
                 name: "Bullish Marubozu",
-                img: imageUrl + "/Green_marubozu.png",
+                img: imageUrl + "/single" + "/Green_marubozu.png",
                 trend: "Green",
                 signal: "Bullish",
                 notes: ""
             },
             {
                 name: "Dragonfly Doji",
-                img: imageUrl + "/Green_doji.png",
+                img: imageUrl + "/single"  + "/Green_doji.png",
                 trend: "Green",
                 signal: "Bullish",
                 notes: ""
             },
             {
                 name: "Hammer",
-                img: imageUrl + "/Green_hammer.png",
+                img: imageUrl + "/single"  + "/Green_hammer.png",
                 trend: "Green",
                 signal: "Bullish",
                 notes: ""
             },
             {
                 name: "Bullish Spinning Top",
-                img: imageUrl + "/Green_spinning_top.png",
+                img: imageUrl + "/single"  + "/Green_spinning_top.png",
                 trend: "Green",
                 signal: "Bullish",
                 notes: ""
             },
             {
                 name: "Inverted Hammer",
-                img: imageUrl + "/Green_inverted_hammer.png",
+                img: imageUrl + "/single"  + "/Green_inverted_hammer.png",
                 trend: "Green",
                 signal: "Bullish",
                 notes: ""
             },
             {
                 name: "Doji",
-                img: imageUrl + "/Doji.png",
+                img: imageUrl + "/single"  + "/Doji.png",
                 trend: "Grey",
                 signal: "Indecision",
                 notes: ""
             },
             {
                 name: "Hanging Man",
-                img: imageUrl + "/Red_handing_man.png",
+                img: imageUrl + "/single"  + "/Red_handing_man.png",
                 trend: "Red",
                 signal: "Bearish",
                 notes: ""
             },
             {
                 name: "Bearish Spinning Top",
-                img: imageUrl + "/Red_spinning_top.png",
+                img: imageUrl + "/single"  + "/Red_spinning_top.png",
                 trend: "Red",
                 signal: "Bearish",
                 notes: ""
             },
             {
                 name: "Bearish Inverted Hammer",
-                img: imageUrl + "/Red_inverted_hammer.png",
+                img: imageUrl + "/single"  + "/Red_inverted_hammer.png",
                 trend: "Red",
                 signal: "Bearish",
                 notes: ""
             },
             {
                 name: "Gravestone Doji",
-                img: imageUrl + "/Red_doji.png",
+                img: imageUrl + "/single"  + "/Red_doji.png",
                 trend: "Red",
                 signal: "Bearish",
                 notes: ""
             },
             {
                 name: "Bearish Marubozu",
-                img: imageUrl + "/Red_marubozu.png",
+                img: imageUrl + "/single"  + "/Red_marubozu.png",
                 trend: "Red",
                 signal: "Bearish",
                 notes: ""
             },
+    ],
+
+    double_sticks : [
+        {
+            name: "Bullish Marubozu",
+            img: imageUrl + "/double" + "/Green_marubozu.png",
+            trend: "Green",
+            signal: "Bullish",
+            notes: ""
+        },
     ]
 }
 
 onload()
 
 function onload() {
-    addOneCandlestickPatterns()
+    addSingleCandlestickPatterns()
+    addDoubleCandlestickPatterns()
 }
 
-function addOneCandlestickPatterns() {
-    for (let item of candlestickPatterns.one_stick) {
-        updateTableData(item, docEls.oneCandleStickTableBody)
+function addSingleCandlestickPatterns() {
+    for (let item of candlestickPatterns.single_stick) {
+        updateTableData(item, docEls.singleCandleStickTableBody)
+    }
+}
+
+function addDoubleCandlestickPatterns() {
+    for (let item of candlestickPatterns.double_sticks) {
+        updateTableData(item, docEls.doubleCandleStickTableBody)
     }
 }
 

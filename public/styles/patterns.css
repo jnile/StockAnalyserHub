@@ -18,6 +18,10 @@ body {
     flex-direction: column;
 }
 
+.mb-3 {
+    margin-bottom: 1em;
+}
+
 .navbar {
     justify-content: flex-start;
 }
