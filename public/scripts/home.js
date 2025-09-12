@@ -2,6 +2,7 @@ import { ChartsManager } from './ChartsManager.js'
 import { StockAnalyser } from './StockAnalyser.js'
 import { NO_TO_PATTERNS, NO_TO_SIGNAL, NO_TO_TREND } from './Enums.js'
 import { appendDataToTableRow } from './Utility.js'
+import { Candlestick } from './Candlestick.js'
 
 const chartManager = new ChartsManager()
 const stockAnalyser = new StockAnalyser()
@@ -67,7 +68,6 @@ async function callAPI(){
 
     fetch(url, {})
         .then(res => {
-            console.log(res)
             return res.json()})
         .then(data => {
             console.log(data)
@@ -80,6 +80,7 @@ function processData(data) {
     const timeSeries = data[`Time Series (${chartSelections.timeInterval})`];
     
     const candles = [];
+    const candlesticks = [];
     const close = []
     const low = []
     const high = []
@@ -110,13 +111,22 @@ function processData(data) {
             x: new Date(timestamp),
             y: parseFloat(ohlc["2. high"])
         })
+
+        candlesticks.push(new Candlestick(
+            new Date(timestamp),
+            parseFloat(ohlc["1. open"]),
+            parseFloat(ohlc["2. high"]),
+            parseFloat(ohlc["3. low"]),
+            parseFloat(ohlc["4. close"]),
+            parseInt(ohlc["5. volume"])
+        ));
     }
 
     // Update chart
     // Sort by time ascending
     candles.sort((a, b) => a.x - b.x);
 
-    processedData = candles
+    processedData = candlesticks
 
     chartManager.updateStockCharts(candles, close, low, high)
     evaluateData(processedData)
@@ -124,7 +134,7 @@ function processData(data) {
 
 /**
  * Evaluates data for processing
- * @param {[]} data 
+ * @param {Candlestick[]} data 
  */
 function evaluateData(data) {
     for (let i = 0; i < data.length - 2; i++) {

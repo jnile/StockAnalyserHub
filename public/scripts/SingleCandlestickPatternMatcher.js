@@ -1,16 +1,13 @@
 import { PATTERNS, TREND } from "./Enums.js";
-
+import { Candlestick } from "./Candlestick.js";
 /**
  * matches OHLC candlestick data to pattern matcher
- * @param {number} open 
- * @param {number} high 
- * @param {number} low 
- * @param {number} close 
- * @returns { {type:Enums.PATTERNS, color: Enums.TREND} }
+ * @param { Candlestick } currCandlestick
+ * @returns { {type: PATTERNS, color: TREND} }
  */
-export function matchCandlestickPattern(open, high, low, close) {
+export function matchSingleCandlestickPattern(currCandlestick) {
     // Work out 
-    let trend = calculateTrend(open, close)
+    let trend = calculateTrend(currCandlestick.open, currCandlestick.close)
 
     let res = {
         color: trend
@@ -18,10 +15,10 @@ export function matchCandlestickPattern(open, high, low, close) {
 
     switch (trend) {
         case TREND.GREEN:
-            res.type = calculateGreenPattern(open, high, low, close)
+            res.type = calculateGreenPattern(currCandlestick)
             break
         case TREND.RED:
-            res.type = calculateRedPattern(open, high, low, close)
+            res.type = calculateRedPattern(currCandlestick)
             break
         default:
             res.type = PATTERNS.DOJI
@@ -32,13 +29,10 @@ export function matchCandlestickPattern(open, high, low, close) {
 
 /**
  * Check green candlestick patterns
- * @param {number} open 
- * @param {number} high 
- * @param {number} low 
- * @param {number} close 
+ * @param {Candlestick}
  * @returns {Enums.PATTERNS}
  */
-function calculateGreenPattern(open, high, low, close) {
+function calculateGreenPattern({open, low, close, high}) {
     // Check bullish marubozu pattern
     if (open == low && close == high) {
         return PATTERNS.BULLISH_MARUBOZU
@@ -73,13 +67,10 @@ function calculateGreenPattern(open, high, low, close) {
 
 /**
  * Check red candlestick patterns
- * @param {number} open 
- * @param {number} high 
- * @param {number} low 
- * @param {number} close 
+ * @param {Candlestick}
  * @returns {Enums.PATTERNS}
  */
-function calculateRedPattern(open, high, low, close) {
+function calculateRedPattern({open, low, close, high}) {
     // Check bearish marubozu pattern
     if (open == high && close == low) {
         return PATTERNS.BEARISH_MARUBOZU
