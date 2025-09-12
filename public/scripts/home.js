@@ -73,6 +73,7 @@ async function callAPI(){
             console.log(data)
             processData(data)
         })
+
 }
 
 // Process and display data
