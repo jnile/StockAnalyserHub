@@ -12,21 +12,23 @@ export function matchCandlestickPattern(open, high, low, close) {
     // Work out 
     let trend = calculateTrend(open, close)
 
-    if (trend == TREND.GREEN) {
-        return {
-            type: calculateGreenPattern(open, high, low, close),
-            color: TREND.GREEN
-        }
-    } else if (trend == TREND.RED) {
-        return {
-            type: calculateRedPattern(open, high, low, close),
-            color: TREND.RED
-        }
-    }
+    switch (trend) {
+        case TREND.GREEN:
+            return {
+                type: calculateGreenPattern(open, high, low, close),
+                color: TREND.GREEN
+            }
 
-    return {
-        type: PATTERNS.DOJI,
-        color: TREND.GREY
+        case TREND.RED:
+            return {
+                type: calculateRedPattern(open, high, low, close),
+                color: TREND.RED
+            }
+        default:
+            return {
+                type: PATTERNS.DOJI,
+                color: TREND.GREY
+            }
     }
 }
 
