@@ -166,8 +166,17 @@ function updateTableData(res, data) {
     appendDataToTableRow(tr, NO_TO_PATTERNS[0])
 
     // Candle Signal
-    appendDataToTableRow(tr, NO_TO_SIGNAL[res.firstC.trend], NO_TO_SIGNAL[res.firstC.trend])
-    appendDataToTableRow(tr, NO_TO_SIGNAL[res.doubleCandles.trend], NO_TO_SIGNAL[res.doubleCandles.trend])
+    
+    appendDataToTableRow(tr, 
+        (res.firstC.type != 0) ? (NO_TO_SIGNAL[res.firstC.trend]) : NO_TO_SIGNAL[0], 
+        NO_TO_SIGNAL[res.firstC.trend]
+    )
+    
+    appendDataToTableRow(tr, 
+        (res.doubleCandles.type != 0) ? (NO_TO_SIGNAL[res.doubleCandles.trend]) : NO_TO_SIGNAL[0], 
+        NO_TO_SIGNAL[res.doubleCandles.trend]
+    )
+
     appendDataToTableRow(tr, NO_TO_SIGNAL[0], NO_TO_SIGNAL[0])
 
     // Candle Volume
