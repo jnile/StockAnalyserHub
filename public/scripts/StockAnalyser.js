@@ -20,7 +20,7 @@ export class StockAnalyser {
             thirdC : thirdC.getTypeAndTrend(),
         }
 
-        candlePatterns.doubleCandles = matchDoubleCandlestickPattern()
+        candlePatterns.doubleCandles = matchDoubleCandlestickPattern(firstC, secondC)
 
         return candlePatterns
     }

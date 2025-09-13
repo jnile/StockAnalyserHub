@@ -15,11 +15,10 @@ export function matchDoubleCandlestickPattern(c1, c2) {
 
     switch (candle1.trend) {
         case TREND.RED:
-            calculateFirstCandleRed(c1, c2)
-            break;
+            return calculateFirstCandleRed(c1, c2)
         
         case TREND.GREEN:
-            calculateFirstCandleGreen(c1, c2)
+            return calculateFirstCandleGreen(c1, c2)
     }
 
     // If no patterns match
@@ -50,6 +49,11 @@ function calculateFirstCandleRed(c1, c2) {
                 }
             }
     }
+
+    return {
+        type: PATTERNS.NONE,
+        trend: TREND.GREY
+    }
 }
 
 
@@ -60,4 +64,9 @@ function calculateFirstCandleRed(c1, c2) {
  * @param {Candlestick} c2 
  * @returns {{type: PATTERNS, trend: TREND}}
  */
-function calculateFirstCandleGreen(c1,c2) {}
+function calculateFirstCandleGreen(c1,c2) {
+    return {
+        type: PATTERNS.NONE,
+        trend: TREND.GREY
+    }
+}

@@ -161,13 +161,13 @@ function updateTableData(res, data) {
     appendDataToTableRow(tr, date.toString())
 
     // Candle Types/Patterns
-    appendDataToTableRow(tr, NO_TO_PATTERNS[res.firstC.type], NO_TO_TREND[res.firstC.color])
-    appendDataToTableRow(tr, NO_TO_PATTERNS[res.secondC.type], NO_TO_TREND[res.secondC.color])
-    appendDataToTableRow(tr, NO_TO_PATTERNS[res.thirdC.type], NO_TO_TREND[res.thirdC.color])
+    appendDataToTableRow(tr, NO_TO_PATTERNS[res.firstC.type], NO_TO_TREND[res.firstC.trend])
+    appendDataToTableRow(tr, NO_TO_PATTERNS[res.doubleCandles.type], NO_TO_TREND[res.doubleCandles.trend])
+    appendDataToTableRow(tr, NO_TO_PATTERNS[0])
 
     // Candle Signal
-    appendDataToTableRow(tr, NO_TO_SIGNAL[0], NO_TO_SIGNAL[0])
-    appendDataToTableRow(tr, NO_TO_SIGNAL[0], NO_TO_SIGNAL[0])
+    appendDataToTableRow(tr, NO_TO_SIGNAL[res.firstC.trend], NO_TO_SIGNAL[res.firstC.trend])
+    appendDataToTableRow(tr, NO_TO_SIGNAL[res.doubleCandles.trend], NO_TO_SIGNAL[res.doubleCandles.trend])
     appendDataToTableRow(tr, NO_TO_SIGNAL[0], NO_TO_SIGNAL[0])
 
     // Candle Volume
