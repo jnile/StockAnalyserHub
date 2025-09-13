@@ -23,6 +23,7 @@ export const PATTERNS = Object.freeze({
     BEARISH_MARUBOZU: 11,
 
     // Two Candlestick
+    MATCHING_LOW : 12,
 });
 
 export const SIGNAL = Object.freeze({
@@ -51,6 +52,7 @@ export const NO_TO_PATTERNS = Object.freeze({
     11 : "BEARISH MARUBOZU",
 
     // Two Candlestick
+    12 : "MATCHING_LOW"
 });
 
 export const NO_TO_SIGNAL = Object.freeze({

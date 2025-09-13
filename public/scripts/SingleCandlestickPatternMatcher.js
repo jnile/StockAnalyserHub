@@ -1,5 +1,6 @@
 import { PATTERNS, TREND } from "./Enums.js";
 import { Candlestick } from "./Candlestick.js";
+import { calculateBarPerc, calculateValueOnLine } from "./CandlestickUtilityFuncs.js";
 /**
  * matches OHLC candlestick data to pattern matcher
  * @param { Candlestick } currCandlestick
@@ -117,31 +118,4 @@ function calculateTrend(open, close) {
     }
     
     return TREND.GREY
-}
-
-/**
- * Calculates what percentage the bar is relative to the candlestick
- * @param {number} open 
- * @param {number} high 
- * @param {number} low 
- * @param {number} close 
- * @returns {number} Percentage
- */
-function calculateBarPerc(open, high, low, close) {
-    let barHeight = Math.abs(close - open)
-    let lineHeight = high - low
-    
-    return barHeight / lineHeight * 100
-}
-
-/**
- * Calculates what percentage the given point is at on the candlestick
- * @param {number} point 
- * @param {number} low 
- * @param {number} high 
- * @returns {number} Percentage
- */
-function calculateValueOnLine(point, low, high) {
-    let range = high - low
-    return (point - low) / range * 100
 }
