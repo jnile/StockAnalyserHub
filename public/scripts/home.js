@@ -139,7 +139,7 @@ function processData(data) {
  */
 function evaluateData(data) {
     for (let i = 0; i < data.length - 2; i++) {
-        let chrono_data = [data[i], data[i+1], data[i+2]]
+        let chrono_data = [data[i], data[i+1], data[i+2]] // Latest first
 
         const res = stockAnalyser.analyseData(chrono_data)
 
@@ -157,24 +157,26 @@ function updateTableData(res, data) {
     let tr = document.createElement("tr")
 
     // Time
-    let date = new Date(data[2].time)
+    let date = new Date(data[0].time)
     appendDataToTableRow(tr, date.toString())
 
     // Candle Types/Patterns
-    appendDataToTableRow(tr, NO_TO_PATTERNS[res.firstC.type], NO_TO_TREND[res.firstC.trend])
-    appendDataToTableRow(tr, NO_TO_PATTERNS[res.doubleCandles.type], NO_TO_TREND[res.doubleCandles.trend])
+    appendDataToTableRow(tr, 
+        (res.firstCandle != false) ? NO_TO_PATTERNS[res.firstCandle.key] : NO_TO_PATTERNS[0], NO_TO_TREND[res.firstCandle.trend])
+    appendDataToTableRow(tr, 
+        (res.doublePattern != false) ? NO_TO_PATTERNS[res.doublePattern.key] : NO_TO_PATTERNS[0], NO_TO_TREND[res.doublePattern.trend])
     appendDataToTableRow(tr, NO_TO_PATTERNS[0])
 
     // Candle Signal
     
     appendDataToTableRow(tr, 
-        (res.firstC.type != 0) ? (NO_TO_SIGNAL[res.firstC.trend]) : NO_TO_SIGNAL[0], 
-        NO_TO_SIGNAL[res.firstC.trend]
+        (res.firstCandle != false) ? (NO_TO_SIGNAL[res.firstCandle.signal]) : NO_TO_SIGNAL[0], 
+        NO_TO_SIGNAL[res.firstCandle.trend]
     )
     
     appendDataToTableRow(tr, 
-        (res.doubleCandles.type != 0) ? (NO_TO_SIGNAL[res.doubleCandles.trend]) : NO_TO_SIGNAL[0], 
-        NO_TO_SIGNAL[res.doubleCandles.trend]
+        (res.doublePattern != false) ? (NO_TO_SIGNAL[res.doublePattern.signal]) : NO_TO_SIGNAL[0], 
+        NO_TO_SIGNAL[res.doublePattern.signal]
     )
 
     appendDataToTableRow(tr, NO_TO_SIGNAL[0], NO_TO_SIGNAL[0])

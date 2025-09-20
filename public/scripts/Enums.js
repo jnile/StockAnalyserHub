@@ -9,21 +9,23 @@ export const TREND = Object.freeze({
 export const PATTERNS = Object.freeze({
     NONE : 0,
     
-    // One Candlestick
-    BULLISH_MARUBOZU : 1, //
-    DRAGONFLY_DOJI : 2,
-    HAMMER : 3,
-    BULLISH_SPINNING_TOP: 4,
-    INVERTED_HAMMER: 5,
-    DOJI: 6,
-    HANGING_MAN: 7,
-    BEARISH_SPINNING_TOP: 8,
-    BEARISH_INVERTED_HAMMER: 9,
-    GRAVESTONE_DOJI: 10,
-    BEARISH_MARUBOZU: 11,
-
-    // Two Candlestick
-    MATCHING_LOW : 12,
+    SINGLE: {
+        BULLISH_MARUBOZU : 1, //
+        DRAGONFLY_DOJI : 2,
+        HAMMER : 3,
+        BULLISH_SPINNING_TOP: 4,
+        INVERTED_HAMMER: 5,
+        DOJI: 6,
+        HANGING_MAN: 7,
+        BEARISH_SPINNING_TOP: 8,
+        BEARISH_INVERTED_HAMMER: 9,
+        GRAVESTONE_DOJI: 10,
+        BEARISH_MARUBOZU: 11,
+    },
+    
+    DOUBLE: {
+        MATCHING_LOW : 12,
+    }
 });
 
 export const SIGNAL = Object.freeze({
@@ -69,3 +71,5 @@ export const NO_TO_TREND = Object.freeze({
     2: "RED_TREND",
     3: "GREY_TREND",
 })
+
+export const IMAGES_URL = "/AppsData/stockAnalysis/images/"

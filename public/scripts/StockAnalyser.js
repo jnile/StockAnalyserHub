@@ -1,28 +1,26 @@
 import { PATTERNS, TREND, SIGNAL } from './Enums.js'
 import { Candlestick } from './Candlestick.js'
-import { matchDoubleCandlestickPattern } from './doubleCandlestickPatternMatcher.js'
+import { DoubleCandlestickPatterns } from './DoubleCandlestickPatterns.js'
 
 export class StockAnalyser {
 
     /**
      * 
-     * @param { Candlestick[] } candleDataset Array of OHLC values in chronological order
-     * @returns {{firstC:{type:Enums.PATTERNS,color:Enums.TREND}, secondC:{type:Enums.PATTERNS,color:Enums.TREND}, thirdC:{type:Enums.PATTERNS,color: Enums.TREND}}}
+     * @param { Candlestick[] } candleDataset Array of OHLC values in reverse chronological order
+     * @returns {{firstC:{type:PATTERNS,color:TREND}, secondC:{type:PATTERNS,color:TREND}, thirdC:{type:PATTERNS,color: TREND}}}
      */
     analyseData(candleDataset) {
-        let firstC = candleDataset[2]
+        let firstC = candleDataset[0]
         let secondC = candleDataset[1]
-        let thirdC = candleDataset[0]
+        let thirdC = candleDataset[2]
 
         let candlePatterns = {
-            firstC : firstC.getTypeAndTrend(),
-            secondC : secondC.getTypeAndTrend(),
-            thirdC : thirdC.getTypeAndTrend(),
+            firstCandle : firstC.getPattern(),
         }
 
-        candlePatterns.doubleCandles = matchDoubleCandlestickPattern(firstC, secondC)
-
+        let doublePatternMatcher = new DoubleCandlestickPatterns()
+        candlePatterns.doublePattern = doublePatternMatcher.matchPattern(secondC, firstC)
+        
         return candlePatterns
     }
-
 }
