@@ -12,8 +12,9 @@ export class SingleCandlestickPatterns {
     }
 
     /**
-     * 
+     * Matches the pattern of this candlestick
      * @param {Candlestick} c1 Candlestick to match
+     * @returns {SinglePattern} The pattern that it matches to, otherwise returns false
      */
     matchPattern(c1) {
         for (const pat of Object.values(this.patterns[c1.trend])) {
@@ -24,7 +25,10 @@ export class SingleCandlestickPatterns {
 
         return false
     }
-
+    
+    /**
+     * Instantiates all patterns
+     */
     _createPatterns() {
         this._createGreenPatterns()
         this._createGreyPatterns()
@@ -62,7 +66,7 @@ export class SingleCandlestickPatterns {
             TREND.GREEN,
             function (c1) {
                 if (c1.trend == TREND.BULLISH &&
-                    c1.getBarPerc() < 5 && c1.getValuePercOnLine(c1.open) > 90
+                    c1.getBarPerc() < 5 && c1.getPerOfValueOnLine(c1.open) > 90
                 ) {
                     return true
                 }
@@ -80,7 +84,7 @@ export class SingleCandlestickPatterns {
             function (c1) {
                 if (c1.trend == TREND.BULLISH &&
                     c1.getBarPerc() >= 5 && c1.getBarPerc() <= 20 && 
-                    c1.getValuePercOnLine(c1.open) > 60
+                    c1.getPerOfValueOnLine(c1.open) > 60
                 ) {
                     return true
                 }
@@ -98,8 +102,8 @@ export class SingleCandlestickPatterns {
             function (c1) {
                 if (c1.trend == TREND.BULLISH &&
                     c1.getBarPerc() >= 5 && c1.getBarPerc() <= 10 && 
-                    c1.getValuePercOnLine(c1.open) > 45 && 
-                    c1.getValuePercOnLine(c1.open) <= 50
+                    c1.getPerOfValueOnLine(c1.open) > 45 && 
+                    c1.getPerOfValueOnLine(c1.open) <= 50
                 ) {
                     return true
                 }
@@ -117,7 +121,7 @@ export class SingleCandlestickPatterns {
             function (c1) {
                 if (c1.trend == TREND.BULLISH &&
                     c1.getBarPerc() >= 5 && c1.getBarPerc() <= 20 && 
-                    c1.getValuePercOnLine(c1.close) < 40
+                    c1.getPerOfValueOnLine(c1.close) < 40
                 ) {
                     return true
                 }
@@ -161,7 +165,7 @@ export class SingleCandlestickPatterns {
             function (c1) {
                 if (c1.trend == TREND.RED &&
                     c1.getBarPerc() < 5 &&
-                    c1.getValuePercOnLine(c1.open) < 10
+                    c1.getPerOfValueOnLine(c1.open) < 10
                 ) {
                     return true
                 }
@@ -179,7 +183,7 @@ export class SingleCandlestickPatterns {
             function (c1) {
                 if (c1.trend == TREND.RED &&
                     c1.getBarPerc() >= 5 && c1.getBarPerc() <= 20 &&
-                    c1.getValuePercOnLine(c1.open) < 40
+                    c1.getPerOfValueOnLine(c1.open) < 40
                 ) {
                     return true
                 }
@@ -197,8 +201,8 @@ export class SingleCandlestickPatterns {
             function (c1) {
                 if (c1.trend == TREND.RED &&
                     c1.getBarPerc() >= 5 && c1.getBarPerc() <= 10 &&
-                    c1.getValuePercOnLine(c1.open) < 55 &&
-                    c1.getValuePercOnLine(c1.open) >= 50
+                    c1.getPerOfValueOnLine(c1.open) < 55 &&
+                    c1.getPerOfValueOnLine(c1.open) >= 50
                 ) {
                     return true
                 }
@@ -216,7 +220,7 @@ export class SingleCandlestickPatterns {
             function (c1) {
                 if (c1.trend == TREND.RED &&
                     c1.getBarPerc() >= 5 && c1.getBarPerc() <= 20 &&
-                    c1.getValuePercOnLine(c1.close) > 60 
+                    c1.getPerOfValueOnLine(c1.close) > 60 
                 ) {
                     return true
                 }

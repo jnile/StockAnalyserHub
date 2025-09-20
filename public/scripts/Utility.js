@@ -27,13 +27,13 @@ export function calculateBarPerc(inner_range_low, inner_range_high, outer_range_
 }
 
 /**
- * Calculates what percentage the given point is at on the candlestick
+ * Calculates what percentage the given point is on the range
  * @param {number} point
  * @param {number} low
  * @param {number} high
  * @returns {number} Percentage
  */
-export function calculateValueOnLine(point, low, high) {
+export function calculateValueOnRange(point, low, high) {
     let range = high - low
     return (point - low) / range * 100
 }

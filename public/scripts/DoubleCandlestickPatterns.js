@@ -37,6 +37,9 @@ export class DoubleCandlestickPatterns {
         return false
     }
 
+    /**
+     * Instantiates all patterns
+     */
     _createPatterns() {
         this._createGreenPatterns()
         this._createGreyPatterns()
@@ -105,7 +108,7 @@ export class DoubleCandlestickPatterns {
                 if (c1.trend == TREND.RED &&
                     c2.trend == TREND.RED &&
                     c1.low == c1.close && c2.low == c2.close &&
-                    c2.close >= c1.close && c1.getValuePerOnBar(c2.close) < 5
+                    c2.close >= c1.close && c1.getPerOfValOnBar(c2.close) < 5
                 ) {
                     return true
                 }

@@ -67,6 +67,7 @@ export const NO_TO_SIGNAL = Object.freeze({
 })
 
 export const NO_TO_TREND = Object.freeze({
+    0: "",
     1: "GREEN_TREND",
     2: "RED_TREND",
     3: "GREY_TREND",

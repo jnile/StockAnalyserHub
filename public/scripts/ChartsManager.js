@@ -14,6 +14,9 @@ export class ChartsManager{
         this.createLineChart()
     }
 
+    /**
+     * Creates Line chart
+     */
     createLineChart() {
         const ctx = document.getElementById("stockLineChart").getContext("2d");
 
@@ -74,6 +77,9 @@ export class ChartsManager{
         });
     }
 
+    /**
+     * Creates chart with candlesticks
+     */
     createCandlestickChart() {
         const ctx = document.getElementById("stockChart").getContext("2d");
 

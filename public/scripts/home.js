@@ -161,23 +161,33 @@ function updateTableData(res, data) {
     appendDataToTableRow(tr, date.toString())
 
     // Candle Types/Patterns
-    appendDataToTableRow(tr, 
-        (res.firstCandle != false) ? NO_TO_PATTERNS[res.firstCandle.key] : NO_TO_PATTERNS[0], NO_TO_TREND[res.firstCandle.trend])
-    appendDataToTableRow(tr, 
-        (res.doublePattern != false) ? NO_TO_PATTERNS[res.doublePattern.key] : NO_TO_PATTERNS[0], NO_TO_TREND[res.doublePattern.trend])
+    if (res.firstCandle == false) {
+        // Default values
+        appendDataToTableRow(tr, NO_TO_PATTERNS[0], NO_TO_TREND[0])
+    } else {
+        appendDataToTableRow(tr, NO_TO_PATTERNS[res.firstCandle.key], NO_TO_TREND[res.firstCandle.signal])   
+    }
+
+    if (res.doublePattern == false) {
+        appendDataToTableRow(tr, NO_TO_PATTERNS[0], NO_TO_TREND[0])
+    } else {
+        appendDataToTableRow(tr, NO_TO_PATTERNS[res.doublePattern.key], NO_TO_TREND[res.doublePattern.signal])
+    }
+
     appendDataToTableRow(tr, NO_TO_PATTERNS[0])
 
     // Candle Signal
-    
-    appendDataToTableRow(tr, 
-        (res.firstCandle != false) ? (NO_TO_SIGNAL[res.firstCandle.signal]) : NO_TO_SIGNAL[0], 
-        NO_TO_SIGNAL[res.firstCandle.trend]
-    )
-    
-    appendDataToTableRow(tr, 
-        (res.doublePattern != false) ? (NO_TO_SIGNAL[res.doublePattern.signal]) : NO_TO_SIGNAL[0], 
-        NO_TO_SIGNAL[res.doublePattern.signal]
-    )
+    if (res.firstCandle == false) {
+        appendDataToTableRow(tr, NO_TO_SIGNAL[0], NO_TO_SIGNAL[0])
+    } else {
+        appendDataToTableRow(tr, NO_TO_SIGNAL[res.firstCandle.signal], NO_TO_SIGNAL[res.firstCandle.signal])
+    }
+
+    if (res.doublePattern == false) {
+        appendDataToTableRow(tr, NO_TO_SIGNAL[0], NO_TO_SIGNAL[0])
+    } else {
+        appendDataToTableRow(tr, NO_TO_SIGNAL[res.doublePattern.signal], NO_TO_SIGNAL[res.doublePattern.signal])
+    }
 
     appendDataToTableRow(tr, NO_TO_SIGNAL[0], NO_TO_SIGNAL[0])
 

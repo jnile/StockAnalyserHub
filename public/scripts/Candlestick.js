@@ -1,5 +1,5 @@
-import { calculateBarPerc, calculateValueOnLine } from "./Utility.js";
-import { PATTERNS, TREND } from "./Enums.js";
+import { calculateBarPerc, calculateValueOnRange } from "./Utility.js";
+import { TREND } from "./Enums.js";
 import { SingleCandlestickPatterns } from "./SingleCandlestickPatterns.js";
 import {SinglePattern} from "./Pattern.js"
 
@@ -47,30 +47,35 @@ export class Candlestick {
 
     getBarPerc() {
         if (this.barPerc === undefined) {
-            this.barPerc = calculateBarPerc(this.open, this.high, this.low, this.close)
+            this.barPerc = calculateBarPerc(this.open, this.close, this.low, this.high)
         }
 
         return this.barPerc
     }
 
-    getValuePercOnLine(val) {
-        return calculateValueOnLine(val, this.low, this.high)
+    /**
+     * Returns at what percentage the given value is between the low and high of this candlestick
+     * @param {number} val Point to get percentage of
+     * @returns {number} Percentage of the range of where the given value is
+     */
+    getPerOfValueOnLine(val) {
+        return calculateValueOnRange(val, this.low, this.high)
     }
 
     /**
-     * Calculates what percentage the given point is at on the candlestick's bar
-     * @param {number} val 
-     * @returns 
+     * Returns at what percentage the given value is between the open and close of this candlestick
+     * @param {number} val Point to get percentage of
+     * @returns {number} Percentage of the range of where the given value is
      */
-    getValuePerOnBar(val) {
+    getPerOfValOnBar(val) {
         if (this.open == this.close) {
             return 0
         }
 
         if (this.open > this.close) {
-            return calculateValueOnLine(val, this.close, this.open)
+            return calculateValueOnRange(val, this.close, this.open)
         }
 
-        return calculateValueOnLine(val, this.open, this.close)
+        return calculateValueOnRange(val, this.open, this.close)
     }
 }
